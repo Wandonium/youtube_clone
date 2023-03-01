@@ -1,70 +1,115 @@
-# Getting Started with Create React App
+# JS Mastery YouTube-Clone Project
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+![Landing Page Screenshot](./screenshot.png?raw=true "Landing Page")
 
-## Available Scripts
+## Overview
 
-In the project directory, you can run:
+This is a project to create a clone of the YouTube web app by leveraging the YouTube V3 API endpoints provided by the RapidAPI platform. The project was built from this [youtube tutorial](https://www.youtube.com/watch?v=FHTbsZEJspU).
 
-### `npm start`
+## Prerequisites
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+- Installing Node JS & NPM in your local machine. See how [here](https://www.youtube.com/watch?v=X-FPCwZFU_8)
+- How to use React JS to create frontend web applications. See how [here](https://reactjs.org/tutorial/tutorial.html)
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## Links
 
-### `npm test`
+- Solution URL: [Solution on GitHub](https://github.com/Wandonium/youtube_clone)
+- Live Site URL: [Live Site on Netlify](https://dazzling-starburst-b0078e.netlify.app/)
+- Rapid API: [YouTube V3 API](https://rapidapi.com/ytdlfree/api/youtube-v31)
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Run Code locally
 
-### `npm run build`
+To run the project locally, please follow the steps given below.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+- Clone this Repository
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+  ```bash
+  git clone https://github.com/Wandonium/youtube_clone
+  ```
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+- Go to Project directory
 
-### `npm run eject`
+  ```bash
+  cd youtube_clone
+  ```
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+- Start the project using webpack
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+  ```bash
+  npm start
+  ```
+## My process
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+### Built with
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+- React JS
+- Material UI
+- Rapid API
+- Axios
+- React-Router-Dom
+- Flexbox
+- Mobile-first workflow
 
-## Learn More
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+### What I learned
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+How to setup axios with a base url for the API and export a function to be reused with different API endpoints in different React components
 
-### Code Splitting
+```jsx
+import axios from 'axios';
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+const BASE_URL = 'https://youtube-v31.p.rapidapi.com';
 
-### Analyzing the Bundle Size
+const options = {
+    url: BASE_URL,
+    withCredentials: false,
+    params: {
+      maxResults: '50'
+    },
+    headers: {
+      'X-RapidAPI-Key': process.env.REACT_APP_RAPID_API_KEY,
+      'X-RapidAPI-Host': 'youtube-v31.p.rapidapi.com'
+    }
+};
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+export const fetchFromAPI = async(url) => {
+     const { data } = await axios.get(`${BASE_URL}/${url}`, options);
+     return data;
+}
+```
 
-### Making a Progressive Web App
+How to use the Material UI sx prop in various MUI components to target different device screen sizes just like how we do it with media queries in CSS.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+```jsx
+<Card sx={{ 
+    width: { xs: '90vw', sm: '358px', md: '320px' }, 
+    boxShadow: 'none', 
+    borderRadius: 0 
+}}>
+    ...
+</Card>
+```
+How to use the BrowserRouter component of react-router-dom package to setup page routing in the root of my React app.
 
-### Advanced Configuration
+```jsx
+<BrowserRouter>
+    <Box sx={{ backgroundColor: '#000'}}>
+        <Navbar />
+        <Routes>
+            <Route path="/" exact element={<Feed />} />
+            <Route path="/video/:id" element={<VideoDetail />} />
+            <Route path="/channel/:id" element={<ChannelDetail />} />
+            <Route path="/search/:searchTerm" element={<SearchFeed />} />
+        </Routes>
+    </Box>
+</BrowserRouter>
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+## Author
 
-### Deployment
+- Website - [Hillary Wando](http://hillarywando.com/)
+- Twitter - [@hillarywando](https://www.twitter.com/hillarywando)
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+<!-- It is mandatory to add this.-->
 
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+Any comments, suggestions or corrections are welcome. Contribution are welcome as This repository is licensed under [MIT](https://opensource.org/licenses/MIT) License.
