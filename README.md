@@ -1,10 +1,10 @@
-# JS Mastery YouTube-Clone Project
+# YouTube-Clone Project
 
 ![Landing Page Screenshot](./screenshot.png?raw=true "Landing Page")
 
 ## Overview
 
-This is a project to create a clone of the YouTube web app by leveraging the YouTube V3 API endpoints provided by the RapidAPI platform. The project was built from this [youtube tutorial](https://www.youtube.com/watch?v=FHTbsZEJspU).
+This is a project to create a clone of the YouTube web app by leveraging the YouTube V3 API endpoints provided by the RapidAPI platform.
 
 ## Prerequisites
 
